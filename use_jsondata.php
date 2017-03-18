@@ -6,9 +6,9 @@
 </head>
 
 <body>
-
 <p id="showData"></p>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
 <script type="text/javascript">
 $(function(){
      $.getJSON("gen_json.php",function(data){
@@ -23,6 +23,7 @@ $(function(){
      });
 });
 </script>
-s
+
+
 </body>
 </html>
