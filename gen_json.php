@@ -1,3 +1,5 @@
+
+
 <?php
 header("Content-type:application/json; charset=UTF-8");
 header("Cache-Control: no-store, no-cache, must-revalidate");
@@ -5,16 +7,17 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 
 require_once("php/dbconnect.php");
 
+//ไว้ใช้ get สินค้าต่างๆ
 $sql = "
-SELECT * FROM member
+SELECT * FROM customer
 ";
 
 $result = $mysqli->query($sql);
 if($result && $result->num_rows > 0){
     while($row = $result->fetch_assoc()){
         $json_data[] = array(
-            "id" => $row['id'],
-            "username" => $row['username']
+            "cusID" => $row['cusID'],
+            "cusUser" => $row['cusUser']
         );
     }
 }

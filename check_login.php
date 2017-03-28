@@ -7,12 +7,12 @@ require_once("php/dbconnect.php");
 
 //echo "Sawatdee : ".$_POST["sName"]." ".$_POST["sLastName"];
 
-$id = $_POST["sName"];
-$pass = $_POST["sLastName"];
+$id = $_POST["cusUser"];
+$pass = $_POST["cusPass"];
 
 //check id pass
 $sql = "
-SELECT * FROM member where username = '".$id."' and pass = '".$pass."'
+SELECT * FROM customer where cusUser = '".$id."' and cusPass = '".$pass."'
 ";
 
 //show ค่า
@@ -20,8 +20,12 @@ $result = $mysqli->query($sql);
 if($result && $result->num_rows > 0){
     while($row = $result->fetch_assoc()){
         $json_data[] = array(
-            "id" => $row['id'],
-            "username" => $row['username']
+            "cusID" => $row['cusID'],
+            "cusName" => $row['cusName'],
+            "cusStatus" => $row['cusStatus'],
+            "cusUser" => $row['cusUser'],
+            "cusPass" => $row['cusPass'],
+            "cusEmail" => $row['cusEmail']
         );
     }
 }

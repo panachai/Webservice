@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("localhost", "root","","androiddb"); //"localhost", "root","","androiddb"
+$mysqli = new mysqli("localhost", "root","","priceshareddb"); //"localhost", "root","","androiddb"
 /* check connection */
 if ($mysqli->connect_errno) {
     printf("Connect failed: %s\n", $mysqli->connect_error);
