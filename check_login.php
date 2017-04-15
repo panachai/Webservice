@@ -8,7 +8,8 @@ require_once("php/dbconnect.php");
 //echo "Sawatdee : ".$_POST["sName"]." ".$_POST["sLastName"];
 
 $id = $_POST["cusUser"];
-$pass = $_POST["cusPass"];
+$pass = md5($_POST["cusPass"]);
+$type = $_POST["cusType"]; //0 == android ,1 == web
 
 //check id pass
 $sql = "
@@ -19,6 +20,7 @@ SELECT * FROM customer where cusUser = '".$id."' and cusPass = '".$pass."'
 $result = $mysqli->query($sql);
 if($result && $result->num_rows > 0){
     while($row = $result->fetch_assoc()){
+      //echo $row['cusID'];
         $json_data[] = array(
             "cusID" => $row['cusID'],
             "cusName" => $row['cusName'],
@@ -30,15 +32,20 @@ if($result && $result->num_rows > 0){
     }
 }
 
-// แปลง array เป็นรูปแบบ json string
-if(isset($json_data)){
-    $json= json_encode($json_data);
-    if(isset($_GET['callback']) && $_GET['callback']!=""){
-    echo $_GET['callback']."(".$json.");";
-    }else{
-    echo $json;
-    }
+if($type == "0"){
+  // แปลง array เป็นรูปแบบ json string
+  if(isset($json_data)){
+      $json= json_encode($json_data);
+      if(isset($_GET['callback']) && $_GET['callback']!=""){
+      echo $_GET['callback']."(".$json.");";
+      }else{
+      echo $json;
+      }
+  }
+}else{
+  echo "\nweb";
 }
+
 
 
 ?>

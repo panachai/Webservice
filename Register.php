@@ -9,7 +9,7 @@ require_once("php/dbconnect.php");
 
 $name = $_POST["cusName"];
 $user = $_POST["cusUser"];
-$pass = $_POST["cusPass"];
+$pass = md5($_POST["cusPass"]);
 $email = $_POST["cusEmail"];
 
 //check id pass
