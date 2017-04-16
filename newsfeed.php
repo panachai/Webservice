@@ -5,37 +5,32 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 
 require_once("php/dbconnect.php");
 
-//echo "Sawatdee : ".$_POST["sName"]." ".$_POST["sLastName"];
-
-$id = $_POST["cusUser"];
-$pass = md5($_POST["cusPass"]);
-$type = $_POST["cusType"]; //0 == android ,1 == web
-
-//check id pass
+//select newsfeed (tb product)
 $sql = "
-SELECT * FROM customer where cusUser = '".$id."' and cusPass = '".$pass."'
+SELECT * FROM product ORDER BY proID
 ";
 
 //show ค่า
 $result = $mysqli->query($sql);
-
+/*
+proID
+proName
+catDeID
+proDes
+proDisplay
+*/
 if($result && $result->num_rows > 0){
     while($row = $result->fetch_assoc()){
-      //echo $row['cusID'];
-
-      $id_use = $row['cusID'];
+      //echo $row['proDes'];
         $json_data[] = array(
-            "cusID" => $row['cusID'],
-            "cusName" => $row['cusName'],
-            "cusStatus" => $row['cusStatus'],
-            "cusUser" => $row['cusUser'],
-            "cusPass" => $row['cusPass'],
-            "cusEmail" => $row['cusEmail']
+            "proID" => $row['proID'],
+            "proName" => $row['proName'],
+            "catDeID" => $row['catDeID'],
+            "proDes" => $row['proDes'],
+            "proDisplay" => $row['proDisplay']
         );
     }
 }
-
-if($type == "0"){
   // แปลง array เป็นรูปแบบ json string
   if(isset($json_data)){
       $json= json_encode($json_data);
@@ -45,15 +40,5 @@ if($type == "0"){
       echo $json;
       }
   }
-}else{
-  if(isset($id_use)){
-    header("Location:pc_pass.php");
-  }else{
-    header("Location:index.html");
-
-  }
-}
-
-
 
 ?>
