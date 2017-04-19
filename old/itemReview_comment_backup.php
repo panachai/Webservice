@@ -5,11 +5,9 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 
 require_once("php/dbconnect.php");
 
-$id = $_POST["proID"];
-
 //select comment (wait reciver post[] to where proID in [TB]productdetail)
 $sql = "
-SELECT * FROM productdetail where proID = ".$id."  ORDER BY proDeDate
+SELECT * FROM productdetail ORDER BY proDeDate
 ";
 
 //show ค่า
