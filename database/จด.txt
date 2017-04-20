@@ -1,0 +1,21 @@
+แสดงปุ่ม
+setvisible(GONE) buntton
+
+-----
+https://devahoy.com/posts/android-shared-preferences-tutorial/
+
+-----
+
+แก้ login ให้แสดงค่าด้วย (ถ้าไม่ผ่าน)
+
+-----
+ Shared Preferences จะมีทั้งหมดดังนี้
+                • Boolean
+                • Float
+                • Integer
+                • Long
+                • String
+                • String Set (Array)
+-----
+
+

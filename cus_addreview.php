@@ -13,8 +13,10 @@ $sDeID = $_POST["supDeID"];
 $cID = $_POST["cusID"];
 $pDeDate = date("Y-m-d");
 
+
+
 $sql = "
-INSERT INTO customer (proID, proDePrice, proDeDes, supDeID, cusID, proDeDate)
+INSERT INTO productdetail (proID, proDePrice, proDeDes, supDeID, cusID, proDeDate)
  VALUES ('".$pID."', '".$pDePrice."', '".$pDeDes."', '".$sDeID."', '".$cID."', '".$pDeDate."')
 ";
 
