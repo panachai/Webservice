@@ -9,29 +9,22 @@ $id = $_POST["proID"];
 
 //select comment (wait reciver post[] to where proID in [TB]productdetail)
 $sql = "
-SELECT productdetail.proDeID,productdetail.proID,productdetail.proDePrice,
-productdetail.proDeDes,productdetail.supDeID,productdetail.cusID,
-productdetail.proDeScore,productdetail.proDeDate,productdetail.proDeStatus,
-customer.cusName,supplierdetail.supDeDes
-FROM productdetail
-INNER JOIN customer ON productdetail.cusID = customer.cusID
-INNER JOIN supplierdetail ON productdetail.supDeID = supplierdetail.supDeID
-where productdetail.proID = ".$id." ORDER BY productdetail.proDeDate
+SELECT * FROM productdetail where proID = ".$id."  ORDER BY proDeDate
 ";
 
 //show ค่า
 $result = $mysqli->query($sql);
-
-//proDeID
-//proID
-//proDePrice
-//proDeDes
-//supDeID
-//cusID
-//proDeScore
-//proDeDate
-//proDeStatus
-
+/*
+proDeID
+proID
+proDePrice
+proDeDes
+supDeID
+cusID
+proDeScore
+proDeDate
+proDeStatus
+*/
 if($result && $result->num_rows > 0){
     while($row = $result->fetch_assoc()){
       //echo $row['proDes'];
@@ -44,10 +37,7 @@ if($result && $result->num_rows > 0){
             "cusID" => $row['cusID'],
             "proDeScore" => $row['proDeScore'],
             "proDeDate" => $row['proDeDate'],
-            "proDeStatus" => $row['proDeStatus'],
-            "cusName" => $row['cusName'],
-            "supDeDes" => $row['supDeDes']
-//customer.cusName,supplierdetail.supDeDes
+            "proDeStatus" => $row['proDeStatus']
         );
     }
 }
@@ -60,6 +50,5 @@ if($result && $result->num_rows > 0){
       echo $json;
       }
   }
-
 
 ?>
